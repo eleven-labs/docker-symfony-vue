@@ -1,0 +1,1 @@
+a:3:{i:0;C:46:"Symfony\Component\Config\Resource\FileResource":47:{s:39:"/var/www/symfony/app/config/routing.yml";}i:1;C:46:"Symfony\Component\Config\Resource\FileResource":67:{s:59:"/var/www/symfony/src/AppBundle/Controller/AppController.php";}i:2;C:72:"Symfony\Component\DependencyInjection\Config\ContainerParametersResource":6:{a:0:{}}}

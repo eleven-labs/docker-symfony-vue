@@ -1,0 +1,134 @@
+#!/bin/bash
+
+###################################################
+# Commandline utility that make Docker usage easy #
+###################################################
+
+# init project
+init ()
+{
+    docker-compose build --force-rm --no-cache
+    docker-compose up -d --force-recreate
+
+    echo ""
+
+    echo "----> Fix permission"
+    docker-compose exec -T php chmod 777 -R /var/www/symfony/var/cache
+    docker-compose exec -T php chmod 777 -R /var/www/symfony/var/logs
+    echo "  [OK] Permission fixed"
+
+    echo ""
+
+    echo "----> Install dependency"
+    docker-compose exec -T --user www-data php composer install -n
+    echo "  [OK] Dependency installed"
+
+    echo ""
+
+    echo "----> Initialize database"
+    docker-compose exec -T --user www-data php bin/console doctrine:database:create --if-not-exists --no-interaction
+    docker-compose exec -T --user www-data php bin/console doctrine:schema:update --no-interaction --force
+    echo "  [OK] Database initialized"
+
+    echo ""
+
+    echo "----> Load fixture"
+    docker-compose exec -T --user www-data php bin/console doctrine:fixtures:load --no-interaction
+    echo "  [OK] Fixture loaded"
+
+    echo ""
+
+    docker-compose ps
+}
+
+# start docker
+start ()
+{
+    docker-compose up -d
+}
+
+# stop docker
+stop ()
+{
+    docker-compose stop
+}
+
+# run bash
+bash ()
+{
+    docker-compose exec --user www-data php bash
+}
+
+# exec a command into app container (as root)
+exec ()
+{
+    declare ARGS=$@
+    docker-compose exec --user www-data php $ARGS
+}
+
+# remove containers, volumes and local images for this project
+destroy ()
+{
+    docker-compose down -v --rmi local
+}
+
+# run the Symfony console inside the app container
+console ()
+{
+    declare ARGS=$@
+    docker-compose exec -T --user www-data php bin/console $ARGS
+}
+
+# run Composer inside the app container
+composer ()
+{
+    declare ARGS=$@
+    docker-compose exec -T --user www-data php composer $ARGS
+}
+
+tests ()
+{
+    declare ARGS=$@
+
+    docker-compose exec -T --user www-data php bin/console cache:clear --no-warmup -e=test
+    docker-compose exec -T --user www-data php bin/console doctrine:database:drop --force --no-interaction --if-exists -e=test
+    docker-compose exec -T --user www-data php bin/console doctrine:database:create --if-not-exists --no-interaction -e=test
+    docker-compose exec -T --user www-data php bin/console doctrine:schema:update --force --no-interaction -e=test
+    docker-compose exec -T --user www-data php bin/console doctrine:fixtures:load --no-interaction -e=test
+    docker-compose exec -T --user www-data php ./vendor/bin/simple-phpunit $ARGS
+}
+
+usage ()
+{
+    echo "usage: bin/docker COMMAND [ARGUMENTS]
+
+    init              Initialize project
+    start             Start project
+    stop              Stop project
+    bash              Use bash inside the app container
+    exec              Executes a command inside the app container
+    destroy           Remove all the project Docker containers with their volumes
+    console           Use the Symfony console
+    composer          Use Composer inside the app container
+    test              Run test project inside the app container
+    "
+}
+
+main ()
+{
+    declare CMD=$1
+
+    if [ -z $1 ]; then
+        usage
+        exit 0
+    fi
+
+    if [[ ! $1 =~ ^init|start|stop|bash|destroy|console|composer|exec|tests$ ]]; then
+        echo "$1 is not a supported command"
+        exit 1
+    fi
+
+    $@
+}
+
+main $@

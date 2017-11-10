@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+    postgres:
+        image: postgres:9.6
+        ports:
+            - ${POSTGRES_PORT}:5432
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    php:
+        build: docker/php7-fpm
+        env_file: ./.env
+        volumes:
+            - ${SYMFONY_APP_PATH}:/var/www/symfony
+        links:
+            - postgres
+
+    nginx:
+        build: docker/nginx
+        ports:
+            - ${WEB_PORT}:80
+        volumes_from:
+            - php
+        volumes:
+            - ${LOGS_DIR}/nginx/:/var/log/nginx
+
+    elk:
+        image: willdurand/elk
+        ports:
+            - ${ELK_PORT}:80
+        volumes:
+            - ./docker/elk/logstash:/etc/logstash
+            - ./docker/elk/logstash/patterns:/opt/logstash/patterns
+        volumes_from:
+            - php
+            - nginx
+
+    redis:
+        image: redis:3.2.10
+
+    node:
+        build: docker/node
+        volumes:
+            - ${SYMFONY_APP_PATH}:/var/www/symfony
+        command: bash -c "yarn && yarn dev"
