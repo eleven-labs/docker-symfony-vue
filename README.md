@@ -9,12 +9,12 @@ DOCKER - SYMFONY - VUE.JS
 
 # Get project
 
-```bash 
-git clone git@github.com:mdm/eleven-labs/docker-symfony-vuejs.git && cd docker-symfony-vuejs
+```bash
+git clone git@github.com:eleven-labs/docker-symfony-vue.git && cd docker-symfony-vue
 ```
 
 # Change environment variable
-```bash 
+```bash
 cp .env.dist .env
 ```
 
@@ -71,7 +71,7 @@ bin/app start           # Start project
 bin/app stop            # Stop project
 bin/app bash            # Use bash inside the app container
 bin/app exec            # Execute a command inside the app container
-bin/app destroy         # Remove all the project Docker containers with their volumes
+bin/app destroy         # Removes all the project Docker containers with their volumes
 bin/app console         # Use the Symfony console
 bin/app composer        # Use Composer inside the app container
 bin/app tests           # Run test project inside the app container
