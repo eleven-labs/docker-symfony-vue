@@ -1,0 +1,21 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "Chrome >= 52",
+            "FireFox >= 44",
+            "Safari >= 7",
+            "ie >= 10",
+            "last 4 Edge versions",
+          ],
+        },
+      },
+    ],
+    "stage-2",
+    "vue",
+  ],
+}
