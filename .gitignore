@@ -4,15 +4,14 @@
 ### Environement
 .env
 
-### Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
+### Cache, session files and logs (Symfony4)
+/var/
 
 ### Managed by Composer
-/var/bootstrap.php.cache
 /vendor/
+
+### Symfony
+/public/bundles/
 
 ### Assets and user uploads
 /web/bundles/
@@ -20,9 +19,6 @@
 
 ### PHPUnit
 /phpunit.xml
-
-### Docker
-docker/logs/
 
 ### NodeJS - NPM - YARN
 node_modules/
@@ -37,3 +33,7 @@ src/AppBundle/Resources/public/css/
 
 ### Build data
 /build/
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###

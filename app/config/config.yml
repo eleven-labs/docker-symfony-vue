@@ -86,8 +86,8 @@ snc_redis:
             type: predis
             logging: false
             alias: session_client
-            dsn: %redis_dsn%
-            options: %redis_options%
+            dsn: '%redis_dsn%'
+            options: '%redis_options%'
     session:
         client: session_client
         prefix: app_session_
