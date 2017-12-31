@@ -1,4 +1,4 @@
-{% extends '@App/App/layout.html.twig' %}
+{% extends 'App/layout.html.twig' %}
 
 {% block data_layout %}
     {{ parent() }}
@@ -9,5 +9,5 @@
 
 {% block container %}
 <div id="app1"></div>
-<script type="text/javascript" src="{{ asset('bundles/app/js/page1.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/page1.js') }}"></script>
 {% endblock %}

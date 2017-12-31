@@ -4,7 +4,7 @@ snc_redis:
             type: predis
             logging: false
             alias: session_client
-            dsn: '%env(REDIS_URL)%'
+            dsn: 'redis://%env(REDIS_HOST)%'
             options: ~
     session:
         client: session_client

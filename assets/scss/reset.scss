@@ -45,13 +45,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-// Import font
-@font-face {
-  font-family: 'valentine-regular';
-  src: url('../../../../../web/fonts/Valentine-Regular_web.ttf'),
-       url('../../../../../web/fonts/Valentine-Regular_web.woff'),
-       url('../../../../../web/fonts/Valentine-Regular_web.woff2');
-  font-weight: normal;
-  font-style: normal;
-}

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,17 +14,19 @@ class AppController extends Controller
 {
     /**
      * @Route(
+     *     "/",
      *     name="app_homepage"
      * )
      *
      * @return Response
      */
-    public function indexAction(): Response
+    public function page1Action(): Response
     {
-        return $this->render('@App/App/index.html.twig', [
+        return $this->render('App/page1.html.twig', [
           'message'=>'hello !'
           ]);
     }
+
     /**
      * @Route(
      *     "/page2",
@@ -35,6 +37,6 @@ class AppController extends Controller
      */
     public function page2Action(): Response
     {
-        return $this->render('@App/App/page2.html.twig', []);
+        return $this->render('App/page2.html.twig', []);
     }
 }

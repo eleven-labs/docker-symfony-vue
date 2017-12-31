@@ -1,9 +1,0 @@
-app:
-    resource: '@AppBundle/Controller/AppController.php'
-    type:     annotation
-    prefix:   /
-
-api:
-    type:     rest
-    resource: '@AppBundle/Controller/ApiController.php'
-    prefix:   /api

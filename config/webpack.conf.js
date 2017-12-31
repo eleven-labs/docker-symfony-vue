@@ -5,12 +5,12 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    page1: './src/Resources/js/page1/entrypoint.js',
-    page2: './src/Resources/js/page2/entrypoint.js',
+    page1: './assets/js/page1/entrypoint.js',
+    page2: './assets/js/page2/entrypoint.js',
   },
   output: {
-    path: path.resolve(__dirname, '../src/Resources/public'),
-    filename: 'js/[name].js',
+    path: path.resolve(__dirname, '../public'),
+    filename: 'build/js/[name].js',
   },
   module: {
     rules: [

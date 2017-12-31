@@ -14,11 +14,11 @@ export default {
     Message,
   },
 	mounted() {
-		fetch('')
+		fetch('api/astronauts.json')
 			.then(response => response.json)
 			.then(
 				({ message }) =>
-					this.$set(this, 'message', dataLayout.message);
+					this.$set(this, 'message', dataLayout.message)
 				)
   },
 };
