@@ -10,12 +10,10 @@
 ### Managed by Composer
 /vendor/
 
-### Symfony
+### Symfony : Assets and user uploads
 /public/bundles/
+/public/uploads/
 
-### Assets and user uploads
-/web/bundles/
-/web/uploads/
 
 ### PHPUnit
 /phpunit.xml
@@ -28,12 +26,8 @@ yarn-error.log*
 coverage/
 
 ### Front
-src/AppBundle/Resources/public/js/
-src/AppBundle/Resources/public/css/
+public/build/
 
-### Build data
-/build/
-###> symfony/phpunit-bridge ###
+### symfony/phpunit-bridge
 .phpunit
-/phpunit.xml
-###< symfony/phpunit-bridge ###
+phpunit.xml
