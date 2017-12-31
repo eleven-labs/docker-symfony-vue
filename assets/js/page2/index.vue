@@ -1,5 +1,5 @@
 <template>
-	<Message text="i'm on page 2" />
+	<Message :text="message" />
 </template>
 
 <script>
@@ -14,12 +14,11 @@ export default {
     Message,
   },
 	mounted() {
-		fetch('api/astronauts.json')
-			.then(response => response.json)
-			.then(
-				({ message }) =>
-					this.$set(this, 'message', dataLayout.message)
-				)
+		fetch('api/astronauts/2.json')
+			.then((response) => response.json())
+			.then((data) => {
+                this.$set(dataLayout.message, data.name);
+            })
   },
 };
 </script>

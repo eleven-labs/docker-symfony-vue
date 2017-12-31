@@ -28,6 +28,7 @@
     "ext-iconv": "*",
     "api-platform/api-pack": "^1.0",
     "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/doctrine-fixtures-bundle": "^3.0",
     "doctrine/orm": "^2.5",
     "predis/predis": "^1.1",
     "snc/redis-bundle": "^2.0",
@@ -42,7 +43,6 @@
     "twig/twig": "^1.0||^2.0"
   },
   "require-dev": {
-    "doctrine/doctrine-fixtures-bundle": "^2.3",
     "symfony/dotenv": "^4.0",
     "symfony/phpunit-bridge": "^4.0",
     "symfony/thanks": "^1.0"

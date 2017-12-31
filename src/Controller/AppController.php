@@ -14,7 +14,7 @@ class AppController extends Controller
 {
     /**
      * @Route(
-     *     "/",
+     *     "/page1",
      *     name="app_homepage"
      * )
      *
