@@ -20,11 +20,11 @@ class AppController extends Controller
      *
      * @return Response
      */
-    public function page1Action(): Response
+    public function page1(): Response
     {
         return $this->render('App/page1.html.twig', [
           'message'=>'hello !'
-          ]);
+        ]);
     }
 
     /**
@@ -35,7 +35,7 @@ class AppController extends Controller
      *
      * @return Response
      */
-    public function page2Action(): Response
+    public function page2(): Response
     {
         return $this->render('App/page2.html.twig', []);
     }

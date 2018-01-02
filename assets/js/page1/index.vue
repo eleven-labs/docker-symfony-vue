@@ -1,5 +1,8 @@
 <template>
-	<Message :text="message" />
+	<div id="page1">
+		<Message :text="message" />
+		<a href="/page2">Go to the page2</a>
+	</div>
 </template>
 
 <script>

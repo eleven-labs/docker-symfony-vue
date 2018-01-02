@@ -13,8 +13,7 @@ init ()
     echo ""
 
     echo "----> Fix permission"
-    docker-compose exec -T php chmod 777 -R /var/www/symfony/var/cache
-    docker-compose exec -T php chmod 777 -R /var/www/symfony/var/log
+    docker-compose exec -T php chmod 777 -R /var/www/symfony/var
     echo "  [OK] Permission fixed"
 
     echo ""
