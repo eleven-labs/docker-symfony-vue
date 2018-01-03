@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgres:
-    image: postgres:10
+    image: postgres:10-alpine
     env_file:
       - .env
 
@@ -29,14 +29,10 @@ services:
       - php
 
   redis:
-    image: redis:4
+    image: redis:4-alpine
 
   node:
-    build:
-      context: .
-      dockerfile: docker/node/Dockerfile
-    env_file:
-      - .env
+    image: node:9
     user: node
     working_dir: ${APP_DIR}
     volumes:
