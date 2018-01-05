@@ -1,48 +1,44 @@
-version: '2'
+version: '3'
 
 services:
-    postgres:
-        image: postgres:9.6
-        ports:
-            - ${POSTGRES_PORT}:5432
-        environment:
-            POSTGRES_DB: ${POSTGRES_DB}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  postgres:
+    image: postgres:10-alpine
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
 
-    php:
-        build: docker/php7-fpm
-        env_file: ./.env
-        volumes:
-            - ${PWD}:/var/www/symfony
-        links:
-            - postgres
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    env_file:
+      - .env
+    user: www-data
+    working_dir: ${APP_DIR}
+    volumes:
+      - ${PWD}:${APP_DIR}
 
-    nginx:
-        build: docker/nginx
-        ports:
-            - ${WEB_PORT}:80
-        volumes_from:
-            - php
-        volumes:
-            - ${LOGS_DIR}/nginx/:/var/log/nginx
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - ${WEB_PORT}:80
+    volumes:
+      - ${PWD}:${APP_DIR}
 
-    elk:
-        image: willdurand/elk
-        ports:
-            - ${ELK_PORT}:80
-        volumes:
-            - ./docker/elk/logstash:/etc/logstash
-            - ./docker/elk/logstash/patterns:/opt/logstash/patterns
-        volumes_from:
-            - php
-            - nginx
+  redis:
+    image: redis:4-alpine
 
-    redis:
-        image: redis:3.2.10
-
-    node:
-        build: docker/node
-        volumes:
-            - ${SYMFONY_APP_PATH}:/var/www/symfony
-        command: bash -c "yarn && yarn dev"
+  node:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    env_file:
+      - .env
+    user: node
+    working_dir: ${APP_DIR}
+    volumes:
+      - ${PWD}:${APP_DIR}
+    command: sh -c "yarn && yarn dev"

@@ -53,10 +53,10 @@ stop ()
     docker-compose stop
 }
 
-# run bash
-bash ()
+# run sh
+sh ()
 {
-    docker-compose exec --user www-data php bash
+    docker-compose exec --user www-data php sh
 }
 
 # exec a command into app container (as root)
@@ -105,7 +105,7 @@ usage ()
     init              Initialize project
     start             Start project
     stop              Stop project
-    bash              Use bash inside the app container
+    sh                Use sh inside the app container
     exec              Executes a command inside the app container
     destroy           Remove all the project Docker containers with their volumes
     console           Use the Symfony console
@@ -123,7 +123,7 @@ main ()
         exit 0
     fi
 
-    if [[ ! $1 =~ ^init|start|stop|bash|destroy|console|composer|exec|tests$ ]]; then
+    if [[ ! $1 =~ ^init|start|stop|sh|destroy|console|composer|exec|tests$ ]]; then
         echo "$1 is not a supported command"
         exit 1
     fi
