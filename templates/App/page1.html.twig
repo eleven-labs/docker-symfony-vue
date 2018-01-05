@@ -1,0 +1,13 @@
+{% extends 'App/layout.html.twig' %}
+
+{% block data_layout %}
+    {{ parent() }}
+    <script type="text/javascript">
+      dataLayout.message = "{{ message }}";
+    </script>
+{% endblock %}
+
+{% block container %}
+<div id="app1"></div>
+<script type="text/javascript" src="{{ asset('build/page1.js') }}"></script>
+{% endblock %}

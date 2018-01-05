@@ -1,0 +1,9 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    assets: ~
+    session:
+        handler_id: snc_redis.session.handler
+    php_errors:
+        log: true
+    profiler:
+        enabled: '%kernel.debug%'

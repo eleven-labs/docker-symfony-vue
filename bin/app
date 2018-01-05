@@ -13,8 +13,7 @@ init ()
     echo ""
 
     echo "----> Fix permission"
-    docker-compose exec -T php chmod 777 -R /var/www/symfony/var/cache
-    docker-compose exec -T php chmod 777 -R /var/www/symfony/var/logs
+    docker-compose exec --user=root -T php chmod 777 -R /var/www/symfony/var
     echo "  [OK] Permission fixed"
 
     echo ""
@@ -26,6 +25,7 @@ init ()
     echo ""
 
     echo "----> Initialize database"
+    docker-compose exec -T --user www-data php bin/console doctrine:database:drop --no-interaction --force
     docker-compose exec -T --user www-data php bin/console doctrine:database:create --if-not-exists --no-interaction
     docker-compose exec -T --user www-data php bin/console doctrine:schema:update --no-interaction --force
     echo "  [OK] Database initialized"

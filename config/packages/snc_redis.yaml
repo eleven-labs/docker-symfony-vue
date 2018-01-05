@@ -1,0 +1,12 @@
+snc_redis:
+    clients:
+        session_client:
+            type: predis
+            logging: false
+            alias: session_client
+            dsn: 'redis://%env(REDIS_HOST)%'
+            options: ~
+    session:
+        client: session_client
+        prefix: app_session_
+        ttl: 86400

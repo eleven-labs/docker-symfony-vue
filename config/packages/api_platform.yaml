@@ -1,0 +1,7 @@
+api_platform:
+    title: 'Astronaut API'
+    description: 'This is an astronaut api'
+    version: '0.1.0'
+    enable_nelmio_api_doc: true
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
