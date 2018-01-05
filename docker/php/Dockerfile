@@ -21,5 +21,3 @@ RUN "date"
 RUN docker-php-ext-install pdo_pgsql zip
 
 RUN usermod -u 1000 www-data
-
-WORKDIR /var/www/symfony
