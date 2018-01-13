@@ -14,7 +14,7 @@ services:
         build: docker/php7-fpm
         env_file: ./.env
         volumes:
-            - ${SYMFONY_APP_PATH}:/var/www/symfony
+            - ${PWD}:/var/www/symfony
         links:
             - postgres
 
