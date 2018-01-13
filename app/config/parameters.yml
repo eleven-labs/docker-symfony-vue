@@ -7,7 +7,7 @@ parameters:
     database_password: '%env(POSTGRES_PASSWORD)%'
 
     # Mailer parameters
-    mailer_transport: %env(SMTP_TRANSPORT)%
+    mailer_transport: '%env(SMTP_TRANSPORT)%'
     mailer_host: '%env(SMTP_HOST)%'
     mailer_user: '%env(SMTP_USER)%'
     mailer_password: '%env(SMTP_PASSWORD)%'
