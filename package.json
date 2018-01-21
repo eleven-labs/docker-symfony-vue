@@ -9,10 +9,10 @@
     "url": "https://github.com/elevan-labs/docker-symfony-vuejs"
   },
   "scripts": {
-    "dev": "NODE_ENV=dev webpack --config ./app/config/webpack.conf.js --devtool source-map --debug --watch --display-error-details",
-    "build": "NODE_ENV=production webpack --config ./app/config/webpack.conf.js --progress --colors --optimize-minimize",
+    "dev": "NODE_ENV=dev webpack --config ./config/webpack.conf.js --devtool source-map --debug --watch --display-error-details",
+    "build": "NODE_ENV=production webpack --config ./config/webpack.conf.js --progress --colors --optimize-minimize",
     "test": "NODE_ENV=testing jest --coverage",
-    "lint": "eslint --ext .js,.vue src && stylelint src/AppBundle/Resources/js/**/**/*.scss src/AppBundle/Resources/js/**/*.scss --fix",
+    "lint": "eslint --ext .js,.vue src && stylelint assets/js/**/**/*.scss assets/js/**/*.scss --fix",
     "add-component": "./bin/add-component.sh"
   },
   "dependencies": {
