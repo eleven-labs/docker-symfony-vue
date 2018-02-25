@@ -21,9 +21,6 @@
 ### PHPUnit
 /phpunit.xml
 
-### Docker
-docker/logs/
-
 ### NodeJS - NPM - YARN
 node_modules/
 npm-debug.log*
