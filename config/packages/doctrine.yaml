@@ -1,0 +1,21 @@
+doctrine:
+    dbal:
+        # configure these for your database server
+        driver: 'pdo_pgsql'
+        server_version: '10'
+        charset: utf8
+
+        # With Symfony 3.3, remove the `resolve:` prefix
+        url: 'postgresql://%env(POSTGRES_USER)%:%env(POSTGRES_PASSWORD)%@%env(POSTGRES_HOST)%:%env(POSTGRES_PORT)%/%env(POSTGRES_DB)%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App

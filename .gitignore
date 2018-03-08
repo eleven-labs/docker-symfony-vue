@@ -1,36 +1,28 @@
-### IDE
-.idea/
-
-### Environement
+### Environment
 .env
 
-### Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
+### Cache, session files and logs (Symfony4)
+/var/
 
 ### Managed by Composer
-/var/bootstrap.php.cache
 /vendor/
 
-### Assets and user uploads
-/web/bundles/
-/web/uploads/
-
-### PHPUnit
-/phpunit.xml
+### Symfony : Assets and user uploads
+/public/bundles/
+/public/uploads/
 
 ### NodeJS - NPM - YARN
 node_modules/
-npm-debug.log*
-yarn-debug.log*
+npm-debug.log
 yarn-error.log*
 coverage/
 
 ### Front
-src/AppBundle/Resources/public/js/
-src/AppBundle/Resources/public/css/
+public/build/
 
-### Build data
-/build/
+### symfony/phpunit-bridge
+.phpunit
+/phpunit.xml
+
+### IDE
+.idea/
